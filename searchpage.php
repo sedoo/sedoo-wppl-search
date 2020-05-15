@@ -9,7 +9,10 @@
 
 get_header();
 ?>
-
+<script>
+    var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+    var search_string = "<?php echo $s; ?>";
+</script>
 	<section id="primary" class="content-area wrapper">
 		<main id="main" class="site-main">
 
@@ -28,6 +31,7 @@ get_header();
             echo '<section class="sedoo_search_results">';
 			/* Start the Loop */
             $cpt_array = array();
+            $cpt_id = array();
             while ( have_posts() ) :
                 the_post();
                 if(!array_key_exists(get_post_type(), $cpt_array)) {
@@ -36,12 +40,23 @@ get_header();
                 {
                     $cpt_array[get_post_type()]++; 
                 }
-				include 'content.php';
-			endwhile;
+                if( isset($cpt_id[get_post_type()]) ) {
+                    $cpt_id[get_post_type()] .= ','.get_the_ID();
+                }
+                else {
+                    $cpt_id[get_post_type()] = ','.get_the_ID();
+                }
+            endwhile;
+            echo '<div id="sedoo_search_results_list_js"></div>';
             echo '</section>';
             echo '<section class="sedoo_search_buttons">';
                 foreach($cpt_array as $cpt_slug => $nbitem) {
-                    echo '<div class="sedoo_search_button" id="sedoo_search_cpt_'.$cpt_slug.'">'.$cpt_slug.' ('.$nbitem.')</div>';
+                    if($nbitem >1) {
+                        $texte = ucfirst($cpt_slug).'s';
+                    } else {
+                        $texte = ucfirst($cpt_slug);
+                    }
+                    echo '<div class="sedoo_search_button" array_id='.substr($cpt_id[$cpt_slug],1).' id="sedoo_search_cpt_'.$cpt_slug.'">'.$texte.' ('.$nbitem.')</div>';
                 }
             echo '</section>';
 
