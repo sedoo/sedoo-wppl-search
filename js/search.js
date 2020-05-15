@@ -9,7 +9,6 @@ jQuery(document).ready(function(){
                   'array_id': array_id
                 }
               }).done(function(response) {
-                  jQuery('#sedoo_search_results_list_js').empty();
                   jQuery('#sedoo_search_results_list_js').append(response);
 
                     jQuery('.sedoo_search_toggle_excerpt').click(function() {
@@ -18,7 +17,7 @@ jQuery(document).ready(function(){
                         jQuery('#excerpt_'+id).toggleClass('visible');
                     });
               });
-
+        jQuery('#sedoo_search_results_list_js').empty();
         jQuery('.sedoo_search_button.active').removeClass('active');
         jQuery(this).addClass('active');
     });

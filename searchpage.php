@@ -11,12 +11,17 @@ get_header();
 ?>
 <script>
     var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
-    var search_string = "<?php echo $s; ?>";
+    "<?php echo $s; ?>";
 </script>
 	<section id="primary" class="content-area wrapper">
 		<main id="main" class="site-main">
 
-		<?php if ( have_posts() ) : ?>
+
+        <?php
+        $args = array('s' => $s, 'posts_per_page' => -1);
+        $search_query = new WP_Query( $args );
+        ?>
+		<?php if ( $search_query->have_posts() ) : ?>
 
 			<header class="page-header">
 				<h1 class="page-title">
@@ -32,8 +37,8 @@ get_header();
 			/* Start the Loop */
             $cpt_array = array();
             $cpt_id = array();
-            while ( have_posts() ) :
-                the_post();
+            while ( $search_query->have_posts() ) :
+                $search_query->the_post();
                 if(!array_key_exists(get_post_type(), $cpt_array)) {
                     $cpt_array[get_post_type()] = 1; 
                 } else 
@@ -59,8 +64,6 @@ get_header();
                     echo '<div class="sedoo_search_button" array_id='.substr($cpt_id[$cpt_slug],1).' id="sedoo_search_cpt_'.$cpt_slug.'">'.$texte.' ('.$nbitem.')</div>';
                 }
             echo '</section>';
-
-			the_posts_navigation();
 
 		else :
 
