@@ -1,0 +1,24 @@
+.sedoo_search_results_container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.sedoo_search_buttons {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 2em;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 1em;
+}
+
+.sedoo_search_buttons div {
+    cursor: pointer;
+    background: #eee;
+    flex: 1;
+    text-align: center;
+    padding: 10px 15px;
+}
+
+.sedoo_search_buttons div:hover, 
+.sedoo_search_buttons div.active {
+    background:#d7d6d6;
+}
