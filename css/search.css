@@ -68,3 +68,13 @@
     transform:rotate(180deg); 
     transition: all 0.2s ease-in;
 }
+
+/* ajout css pour theia */
+.sedoo_search_results .group-content .entry-content {
+    margin-top: 3px;
+}
+
+.sedoo_search_taxo {
+    margin:0;
+    padding:0;
+}
