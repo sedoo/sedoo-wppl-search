@@ -2,6 +2,29 @@
     display: flex;
     flex-direction: column-reverse;
 }
+
+.sedoo_search_results_container article {
+    margin-bottom: 2.5em;
+}
+
+.sedoo_search_results_container article .dashicons {
+    vertical-align: middle;
+    margin-right: 10px;;
+}
+
+.sedoo_search_results_container .group-content {
+    background: #f7f2f2;
+    padding: 3px 10px;
+    margin-top: 1em;
+}
+.sedoo_search_results_container .hidded {
+    display: none;
+}
+
+.sedoo_search_results_container .visible {
+    display: block;
+}
+
 .sedoo_search_buttons {
     display: flex;
     justify-content: space-evenly;
@@ -21,4 +44,27 @@
 .sedoo_search_buttons div:hover, 
 .sedoo_search_buttons div.active {
     background:#d7d6d6;
+}
+
+
+.sedoo_search_taxo li {
+    display: inline;
+}
+
+.sedoo_search_taxo li a{
+    background: #ecebeb;
+    padding: 2px 10px;
+    font-size: 0.8em;
+    border-radius: 6px;
+    margin-right: 10px;
+}
+
+.sedoo_search_toggle_excerpt {
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.excerpt_displayed span {
+    transform:rotate(180deg); 
+    transition: all 0.2s ease-in;
 }
