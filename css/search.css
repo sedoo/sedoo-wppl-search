@@ -79,3 +79,20 @@
     margin:0;
     padding:0;
 }
+
+.sedoo_infiniteloader {
+    height:350px; 
+    text-align:center;
+}
+.hide {
+    display: none;
+}
+
+.loader_button {
+    background: gray;
+    color:white;
+    padding: 10px 15px;
+    text-align: center;
+    display: inline;
+    cursor: pointer;
+}
