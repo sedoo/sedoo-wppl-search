@@ -29,16 +29,17 @@ $post_type_taxonomies = get_object_taxonomies( $post_type );
 
             // loop through each of them
             foreach ( $post_type_taxonomies as $taxonomy ) {
-                if($taxonomy == 'post_translation') {
-                } else {
-                    // get terms list for each taxonomy
-                    $terms = get_the_term_list( get_the_ID(), $taxonomy, '', '</li><li>', ''  );
-
-                    // show only those terms that are assigned to post 
-                    if ( $terms ) {
-                        echo '<li>' . $terms . '</li>';
+                // get terms list for each taxonomy
+                $terms = get_the_terms( get_the_ID(), $taxonomy);
+                
+                foreach($terms as $term) {
+                    $first_char_val = substr($term->name, 0, 4);
+                    if($first_char_val != 'pll_'){
+                        $term_link = get_term_link( $term );
+                        echo '<li><a href="'.$term_link.'" rel="tag">' . $term->name . '</a></li>';
                     }
                 }
+                
             }
 
             echo '</ul>';
