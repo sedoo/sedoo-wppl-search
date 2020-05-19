@@ -96,3 +96,7 @@
     display: inline;
     cursor: pointer;
 }
+
+#scrolldetect {
+    height: 150px;;
+}
