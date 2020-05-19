@@ -81,20 +81,27 @@
 }
 
 .sedoo_infiniteloader {
-    height:350px; 
-    text-align:center;
-}
-.hide {
-    display: none;
+    height: auto;
+    text-align: center;
+    padding: 2em;
+    background: #f2f2f2;
 }
 
-.loader_button {
-    background: gray;
-    color:white;
-    padding: 10px 15px;
-    text-align: center;
-    display: inline;
-    cursor: pointer;
+.sedoo_infiniteloader::before{
+    content: 'a ';
+    height: 100px;
+    width: 100px;
+    background-image: url('../img/loader.svg');
+    background-size: 100px 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: transparent;
+    margin-bottom: 1.5em;
+}
+
+.hide {
+    display: none;
 }
 
 #scrolldetect {
