@@ -31,12 +31,13 @@ $post_type_taxonomies = get_object_taxonomies( $post_type );
             foreach ( $post_type_taxonomies as $taxonomy ) {
                 // get terms list for each taxonomy
                 $terms = get_the_terms( get_the_ID(), $taxonomy);
-                
-                foreach($terms as $term) {
-                    $first_char_val = substr($term->name, 0, 4);
-                    if($first_char_val != 'pll_'){
-                        $term_link = get_term_link( $term );
-                        echo '<li><a href="'.$term_link.'" rel="tag">' . $term->name . '</a></li>';
+                if($taxonomy != 'language') {
+                    foreach($terms as $term) {
+                        $first_char_val = substr($term->name, 0, 4);
+                        if($first_char_val != 'pll_'){
+                            $term_link = get_term_link( $term );
+                            echo '<li><a href="'.$term_link.'" rel="tag">' . $term->name . '</a></li>';
+                        }
                     }
                 }
                 
