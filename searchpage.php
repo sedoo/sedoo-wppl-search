@@ -23,16 +23,22 @@ get_header();
         ?>
 		<?php if ( $search_query->have_posts() ) : ?>
 
-			<header class="page-header">
+			<header class="page-header sedoo_search_header">
 				<h1 class="page-title">
 					<?php
 					/* translators: %s: search query. */
 					printf( esc_html__( 'Search Results for: %s', 'labs-by-sedoo' ), '<span>' . get_search_query() . '</span>' );
+                    
 					?>
-				</h1>
+                </h1>
+                <form class="sedoo_search_form" action="<?php site_url();?>" method="get">
+                <label for="GET-name">Recherche :</label>
+                <input class="input" id="s" placeholder="<?php echo $_GET['s']; ?>" type="text" name="s">
+                <button type="submit" class="submit">Chercher </button>
+                </form>
 			</header><!-- .page-header -->
             <section class="search_result sedoo_search_results_container">
-			<?php
+            <?php
             echo '<section class="sedoo_search_results">';
 
                 $cpt_array = array();
@@ -58,7 +64,15 @@ get_header();
 
             echo '<section class="sedoo_search_buttons">';
                 foreach($cpt_array as $cpt_slug => $nbitem) {
-                    echo '<div class="sedoo_search_button" id="sedoo_search_cpt_'.$cpt_slug_to_name[$cpt_slug].'">'.ucfirst($cpt_slug).' ('.$nbitem.')</div>';
+                    $nom_affiche = $cpt_slug;
+                    if($cpt_slug == 'Article' && get_field('sedoo_search_lib_articles', 'option') != '' && null !== get_field('sedoo_search_lib_articles', 'option')) {
+                        $nom_affiche = get_field('sedoo_search_lib_articles', 'option');
+                    }
+                    if($cpt_slug == 'Page' && get_field('sedoo_search_lib_pages', 'option') != '' && null !== get_field('sedoo_search_lib_pages', 'option')) {
+                        $nom_affiche = get_field('sedoo_search_lib_pages', 'option');
+                    }
+                    $ordre = sedoo_search_get_ordre(strtolower($cpt_slug_to_name[$cpt_slug]));
+                    echo '<div class="sedoo_search_button flex-'.$ordre.'" id="sedoo_search_cpt_'.$cpt_slug_to_name[$cpt_slug].'">'.ucfirst($nom_affiche).' ('.$nbitem.')</div>';
                 }
             echo '</section>';
             
