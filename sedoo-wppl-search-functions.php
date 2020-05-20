@@ -1,6 +1,7 @@
 <?php 
 function sedoo_search_get_ordre($slug_cpt) {
-	$ordre = 0;
+	$ordre = 1;
+	$cptordre=0;
 	$acf_repeater_field = get_field('sedoo_search_repeat', 'option');
 	if( !empty($acf_repeater_field)):
 		// loop through the rows of data
@@ -8,12 +9,13 @@ function sedoo_search_get_ordre($slug_cpt) {
 		   // display a sub field value
 		   $cpt = get_sub_field('sedoo_search_post_type', 'option');
 		   if($cpt == $slug_cpt) {
-			    $ordre = get_sub_field('sedoo_search_ordre', 'option');
+			   $cptordre = $ordre;
 		   }
+		   $ordre++;
 		endwhile;
-		return $ordre;
+		return $cptordre;
 	else :
-		return $ordre;
+		return $cptordre;
 	   // no rows found
    endif;
 }
