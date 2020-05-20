@@ -65,10 +65,10 @@ get_header();
             echo '<section class="sedoo_search_buttons">';
                 foreach($cpt_array as $cpt_slug => $nbitem) {
                     $nom_affiche = $cpt_slug;
-                    if($cpt_slug == 'Article' && null !== get_field('sedoo_search_lib_articles', 'option')) {
+                    if($cpt_slug == 'Article' && get_field('sedoo_search_lib_articles', 'option') != '' && null !== get_field('sedoo_search_lib_articles', 'option')) {
                         $nom_affiche = get_field('sedoo_search_lib_articles', 'option');
                     }
-                    if($cpt_slug == 'Page' && null !== get_field('sedoo_search_lib_pages', 'option')) {
+                    if($cpt_slug == 'Page' && get_field('sedoo_search_lib_pages', 'option') != '' && null !== get_field('sedoo_search_lib_pages', 'option')) {
                         $nom_affiche = get_field('sedoo_search_lib_pages', 'option');
                     }
                     $ordre = sedoo_search_get_ordre(strtolower($cpt_slug_to_name[$cpt_slug]));
