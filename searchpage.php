@@ -72,7 +72,9 @@ get_header();
                         $nom_affiche = get_field('sedoo_search_lib_pages', 'option');
                     }
                     $ordre = sedoo_search_get_ordre(strtolower($cpt_slug_to_name[$cpt_slug]));
+                    
                     echo '<div class="sedoo_search_button flex-'.$ordre.'" id="sedoo_search_cpt_'.$cpt_slug_to_name[$cpt_slug].'">'.ucfirst($nom_affiche).' ('.$nbitem.')</div>';
+                    
                 }
             echo '</section>';
             
