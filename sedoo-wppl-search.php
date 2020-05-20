@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Sedoo - Search
  * Description: Change l'affichage des resultats de recherche et propose un filtre par cpt
- * Version: 0.0.11
+ * Version: 0.0.12
  * Author: Nicolas Gruwe & Pierre Vert - SEDOO DATA CENTER
  * Author URI:      https://www.sedoo.fr 
  * GitHub Plugin URI: sedoo/sedoo-wppl-search
@@ -29,6 +29,7 @@ if ( ! function_exists('get_field') ) {
 	}
 } else {
   include 'inc/sedoo-wppl-search-acf-fields.php';
+  include 'sedoo-wppl-search-functions.php';
     function sedoo_labtools_acf_populate_post_type_search($field) {
         
         $content_type_list = [];
