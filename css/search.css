@@ -34,6 +34,8 @@
     margin-top: 1em;
 }
 
+
+
 .sedoo_search_buttons div {
     cursor: pointer;
     background: #eee;
@@ -41,6 +43,31 @@
     text-align: center;
     padding: 10px 15px;
 }
+
+.sedoo_search_buttons div.flex-1 {
+    order: 1; /* default is 0 */
+}
+
+.sedoo_search_buttons div.flex-2 {
+    order: 2; /* default is 0 */
+}
+.sedoo_search_buttons div.flex-3 {
+    order: 3; /* default is 0 */
+}
+.sedoo_search_buttons div.flex-4 {
+    order: 4; /* default is 0 */
+}
+.sedoo_search_buttons div.flex-5 {
+    order: 5; /* default is 0 */
+}
+.sedoo_search_buttons div.flex-6 {
+    order: 6; /* default is 0 */
+}
+.sedoo_search_buttons div.flex-0 {
+    order: 99; /* default is 0 */
+}
+
+
 
 .sedoo_search_buttons div:hover, 
 .sedoo_search_buttons div.active {
@@ -107,3 +134,25 @@
 #scrolldetect {
     height: 150px;;
 }
+
+.sedoo_search_form label{
+display: block;
+}
+
+.sedoo_search_form .input {
+    width: calc(100% - 150px);
+    height: 40px;
+}
+
+.sedoo_search_form .submit {
+    width: 145px;
+    height: 40px;
+    background:#e8e5e5;
+}
+
+@media screen and (max-width: 640px) {
+    .sedoo_search_form .input,
+    .sedoo_search_form .submit {
+        width: 100%;
+    }
+  }
