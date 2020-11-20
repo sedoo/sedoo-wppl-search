@@ -21,22 +21,24 @@ get_header();
         $args = array('s' => $s, 'posts_per_page' => -1, 'post_status' => 'publish');
         $search_query = new WP_Query( $args );
         ?>
-		<?php if ( $search_query->have_posts() ) : ?>
+        <header class="page-header sedoo_search_header">
+            <h1 class="page-title">
+                <?php
+                /* translators: %s: search query. */
+                echo __('Search Results for :', 'sedoo-wpth-labs'). "<span>" . get_search_query() . "</span>";
+                // printf( esc_html__( 'Search Results for: %s', 'labs-by-sedoo' ), '<span>' . get_search_query() . '</span>' );
+                
+                ?>
+            </h1>
+            <form class="sedoo_search_form" action="<?php site_url();?>" method="get">
+            <label for="GET-name"><?php echo __('Search keyword :', 'sedoo-wpth-labs');?></label>
+            <input class="input" id="s" placeholder="<?php echo $_GET['s']; ?>" type="text" name="s">
+            <button type="submit" class="submit"><?php echo __('Submit', 'sedoo-wpth-labs');?></button>
+            </form>
+        </header><!-- .page-header -->
 
-			<header class="page-header sedoo_search_header">
-				<h1 class="page-title">
-					<?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'labs-by-sedoo' ), '<span>' . get_search_query() . '</span>' );
-                    
-					?>
-                </h1>
-                <form class="sedoo_search_form" action="<?php site_url();?>" method="get">
-                <label for="GET-name">Recherche :</label>
-                <input class="input" id="s" placeholder="<?php echo $_GET['s']; ?>" type="text" name="s">
-                <button type="submit" class="submit">Chercher </button>
-                </form>
-			</header><!-- .page-header -->
+		<?php if ( $search_query->have_posts() ) : ?>
+			
             <section class="search_result sedoo_search_results_container">
             <?php
             echo '<section class="sedoo_search_results">';
