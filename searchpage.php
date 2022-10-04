@@ -68,15 +68,20 @@ get_header();
             echo '<section class="sedoo_search_buttons">';
                 foreach($cpt_array as $cpt_slug => $nbitem) {
                     $nom_affiche = $cpt_slug;
-
+                    // var_dump($cpt_slug_to_international_name);
+                    // var_dump($cpt_slug);
                     // je dois determiner si le truc est internationalement un post
-                    if(in_array($cpt_slug, $cpt_slug_to_international_name['post']) && get_field('sedoo_search_lib_articles', 'option') != '' && null !== get_field('sedoo_search_lib_articles', 'option')) {
+                    if (array_key_exists('post',$cpt_slug_to_international_name)) {
+                        if(in_array($cpt_slug, $cpt_slug_to_international_name['post']) && get_field('sedoo_search_lib_articles', 'option') != '' && null !== get_field('sedoo_search_lib_articles', 'option')) {
                         $nom_affiche = get_field('sedoo_search_lib_articles', 'option');
+                        }
                     }
 
-                    // idem pour les page, peu importe le blaze que me renvoie polylang
-                    if(in_array($cpt_slug, $cpt_slug_to_international_name['page']) && get_field('sedoo_search_lib_pages', 'option') != '' && null !== get_field('sedoo_search_lib_pages', 'option')) {
-                        $nom_affiche = get_field('sedoo_search_lib_pages', 'option');
+                    // idem pour les pages, peu importe le blaze que me renvoie polylang
+                    if (array_key_exists('page',$cpt_slug_to_international_name)) {
+                        if(in_array($cpt_slug, $cpt_slug_to_international_name['page']) && get_field('sedoo_search_lib_pages', 'option') != '' && null !== get_field('sedoo_search_lib_pages', 'option')) {
+                            $nom_affiche = get_field('sedoo_search_lib_pages', 'option');
+                        }
                     }
                     $ordre = sedoo_search_get_ordre(strtolower($cpt_slug_to_name[$cpt_slug]));
                     echo '<div class="sedoo_search_button flex-'.$ordre.'" id="sedoo_search_cpt_'.$cpt_slug_to_name[$cpt_slug].'">'.ucfirst($nom_affiche).' ('.$nbitem.')</div>';
