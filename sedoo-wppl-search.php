@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Sedoo - Search
  * Description: Change l'affichage des resultats de recherche et propose un filtre par cpt
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Nicolas Gruwe & Pierre Vert - SEDOO DATA CENTER
  * Author URI:      https://www.sedoo.fr 
  * GitHub Plugin URI: sedoo/sedoo-wppl-search
@@ -55,11 +55,14 @@ if ( ! function_exists('get_field') ) {
     add_filter('acf/load_field/name=sedoo_search_post_type', 'sedoo_labtools_acf_populate_post_type_search');
   
   if( function_exists('acf_add_options_page') ) {
-	
+    if ( is_multisite() ) 
+    { $capability = 'manage_network'; } else { $capability = 'update_core'; }
+  
 		acf_add_options_page(array(
 			'page_title' 	=> 'Gestion de la recherche',
 			'menu_title'	=> 'Gestion de la recherche',
 			'menu_slug' 	=> 'sedoo-search-settings',
+      'capability'	=> $capability,
 			'redirect'		=> true
 		));
 		
@@ -71,7 +74,7 @@ if ( ! function_exists('get_field') ) {
 	}
 
   function enqueue_search_script() {
-    // le fichier js qui contient les fonctions tirgger au change des select
+    // le fichier js qui contient les fonctions trigger au change des select
     $scrpt_search = plugins_url().'/sedoo-wppl-search/js/search.js';
     wp_enqueue_script('sedoo_search', $scrpt_search,  array ( 'jquery' ));                    
   }
