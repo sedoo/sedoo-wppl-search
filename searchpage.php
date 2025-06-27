@@ -24,10 +24,10 @@ get_header();
         <header class="page-header sedoo_search_header">
             <h1 class="page-title">
                 <?php
-                /* translators: %s: search query. */
-                echo __('Search Results for :', 'sedoo-wpth-labs'). "<span>" . get_search_query() . "</span>";
-                // printf( esc_html__( 'Search Results for: %s', 'labs-by-sedoo' ), '<span>' . get_search_query() . '</span>' );
-                
+                printf(
+					esc_html__( 'Search Results for: %s', 'labs-by-sedoo' ),
+					esc_html( get_search_query() )
+					);
                 ?>
             </h1>
             <form class="sedoo_search_form" action="<?php site_url();?>" method="get">
